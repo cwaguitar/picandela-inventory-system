@@ -3,5 +3,6 @@ __pycache__/
 *.pyo
 venv/
 .env
+*.db
 # Opcional: Si no quieres subir tu base de datos real con datos personales, 
 # puedes ignorarla o dejar un script que la genere. (Por ahora puedes dejar picandela.db o ignorarla).
