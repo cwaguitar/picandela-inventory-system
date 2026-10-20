@@ -3,17 +3,18 @@ import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Esto detecta automáticamente la carpeta donde está este archivo y le pega el nombre de la BD
+# Detecta automáticamente la carpeta donde está este archivo y le agrega el nombre de la BD
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "picandela.db")
 
 def generar_grafico_precios():
-    # 1. Conectar a la base de datos usando la ruta fija y segura
+    # 1. Conectar a la base de datos usando la ruta fija:
     conexion = sqlite3.connect(DB_PATH)
     df = pd.read_sql("SELECT NOMBRE, PRECIO FROM productos", conexion)
     conexion.close()
 
     # 2. Crear un gráfico de barras
+    
     plt.figure(figsize=(10, 6))
     barras = plt.bar(df['NOMBRE'], df['PRECIO'], color='lightgreen', edgecolor='black')
 
