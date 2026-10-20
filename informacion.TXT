@@ -1,0 +1,22 @@
+Arquitectura del Proyecto Picandela:
+
+Capa de Persistencia: Clases orientadas a objetos que abstraen la conexión y operaciones CRUD sobre SQLite.
+
+Capa de Servicios: Clases encargadas de la validación de datos, manejo de reglas de negocio y limpieza previa a la persistencia.
+
+Capa de Interfaz: Consola/CLI modular (main.py) que interactúa con el usuario final.
+
+Capa de Inteligencia de Negocios: Script de análisis de datos (analisis.py) construido con Pandas para extracción y cálculo de KPIs.
+
+
+____________________________________Otra perspectiva_________________________________________________________________
+
+¿Cómo se usan juntos en la vida real? (El flujo de trabajo)
+
+En un trabajo real de Análisis de Datos, rara vez elegís uno o el otro; usás los dos en equipo:
+
+Paso 1 (SQL): Vas a la base de datos de la empresa y, usando SQL, traés solo la información que te sirve (por ejemplo, las ventas del último año). No te traes toda la base de datos porque pesaría gigabytes, solo lo necesario.
+
+Paso 2 (Python): Esa tablita que te dio SQL la abrís con Python (en un DataFrame) para limpiarla, arreglar fechas mal escritas, calcular promedios y prepararla.
+
+Paso 3 (Power BI / Gráficos): Mandás esos datos limpios a Power BI para hacer el tablero final que verá tu jefe.
