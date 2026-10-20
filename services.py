@@ -4,7 +4,7 @@ class inventarioService:
 
     def __init__(self):
 
-        self.db = miTequeBase() # el servicio posee y maneja la base de datos comienza asi porque hay que usar el se;f con la clase..
+        self.db = miTequeBase() # el servicio posee y maneja la base de datos 
 
     def agregar_producto(self,nombre: str,precio_str: str):
 
@@ -42,8 +42,7 @@ class inventarioService:
         return True, f"El producto {nombre} fue guardado correctamente con su precio de: {precio}"
 
     # COMO YA TODO EN MAIN DEPENDE DE SERVICES Y NO DE DATABASE DEASDE ACA LE MANDAMOS LAS FUNCIONES
-    # QUE NECESITE MAIN DE DATABASE PARA ESTO LAS CREAMOS ACA Y SE LAS DEJAMOS A MAIN PARA QUE ACCEDAN:
-    # DATABASE => SERVICES =>MAIN
+   
 
   
 #---------------------------------------
