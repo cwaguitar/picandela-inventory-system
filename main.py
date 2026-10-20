@@ -1,11 +1,11 @@
-from services import inventarioService  # DE EL ARCHIVO SERVICES  IMPORTAME LA CLASE COMPLETA DE INVENTARIOSERVICE
+from services import inventarioService  
 from graficos import generar_grafico_precios
 from analisis import analisis_picandela
 
 def iniciar_app():
     
-    servicio = inventarioService() # CON LA VARIABLE NOMBRAMOS LA BASE DE DATOS Y LE METEMOS LA CLASE PRINCIPAL.
-
+    servicio = inventarioService()
+    
     while True:
         print("\n-- BIENVENIDOS A PICANDELA! ELIGE CUALQUIERA DE LAS OPCIONES A CONTINUACION:")
         print("OPCION 1: Ver todos los productos")
@@ -28,7 +28,8 @@ def iniciar_app():
             mostrar = servicio.mostrar_producto()
 
             
-            # Imprimimos el mensaje que el servicio preparó para nosotros
+            # Imprimimos el mensaje 
+            
             print(f"PRODUCTOS ENCONTRADOS: \n {mostrar}")
 
         elif opcion == "2":
@@ -37,7 +38,8 @@ def iniciar_app():
             nombre = input("Ingresa el nombre del producto: ") 
             precio = int(input("Ingresa su precio: ")) 
 
-            # Llamamos al servicio y este nos devuelve una tupla: (exito: bool, mensaje: str)        
+            # Llamamos al servicio y este nos devuelve una tupla: (exito: bool, mensaje: str)  
+            
             exito, agregar = servicio.agregar_producto(nombre, precio)  
             print(agregar)    
 
@@ -109,33 +111,4 @@ if __name__ == "__main__":
 
     iniciar_app()
 
-
-    
-            
-# Siempre debemos meter la clase principal en una variable para comenzar a manipular las funciones internas de esta:
-
-#db = miTequeBase() 
-
-#db.deleteRow("Tequenhos")
-
-#db.readRow()
-
-
-#lista para meter varias filas en forma de tuplas :
-
-#lista_productos = [
-
-    #("Uber frankie", 6000) 
-
-
-#]
-
-#db.insertManyRows(lista_productos)
-
-#db.readOrdered("precio")
-
-#db.search("Picante 250ml")
-#db.updateFields("Empanadas x 3")
-
-#db.insertManyRows(lista_productos)
 
