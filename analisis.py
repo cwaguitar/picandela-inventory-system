@@ -12,7 +12,6 @@ def analisis_picandela():
             conexion = sqlite3.connect(db_path)
 
             # 2. Cargar los datos de la tabla 'productos' directamente en un DataFrame de Pandas
-            # (Un DataFrame es básicamente una tabla de Excel inteligente en código)
             df = pd.read_sql_query("SELECT * FROM productos", conexion)
             conexion.close()
 
@@ -28,9 +27,8 @@ def analisis_picandela():
                 precio_promedio = df['PRECIO'].mean()
                 producto_mas_caro = df.loc[df['PRECIO'].idxmax()]
                 producto_mas_barato = df.loc[df['PRECIO'].idxmin()]
-                
-                # Si tuviéramos un campo de stock, calcularíamos el valor total del inventario. 
-                # Por ahora, sumamos el valor nominal de los precios registrados:
+            
+                # Suma  del valor nominal de los precios registrados:
                 valor_total_precios = df['PRECIO'].sum()
 
                 print("📈 --- REPORTE DE ANÁLISIS DE INVENTARIO ---")
