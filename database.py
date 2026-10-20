@@ -11,7 +11,7 @@ class miTequeBase:
         self.createTable() # Llamamos a la creación de la tabla automáticamente al iniciar
 
     def conectar(self):
-        # Usamos siempre la ruta blindada absoluta
+        # Usamos siempre la ruta principal:
         return sqlite3.connect(self.db_path)
 
     def createTable(self):  # CREAMOS LA TABLA
@@ -28,8 +28,6 @@ class miTequeBase:
         
         conexion.commit()
         conexion.close()
-
-    # (El resto de tus métodos: insertRow, readRow, updateFields, deleteRow, search, exportar_a_csv, importar_csv se quedan exactamente igual abajo de esto...)
     
     # ACA INSERTAMOS EL NOMBRE Y EL PRECIO SERIAN LOS NOMBRES DE LAS COLUMNAS PRINCIPALES DE LA TABLA:
 
@@ -80,7 +78,7 @@ class miTequeBase:
         conexion.close()
         return datos
 
-    #-----------enviamos esto a excel ---------#
+    #-----------enviamos a excel ---------#
 
     def exportar_a_csv(self, nombre_archivo="inventario.csv"):
         import csv
@@ -107,6 +105,9 @@ class miTequeBase:
                 
         return True
 
+
+    ----------Traemos de excel -----------------
+    
     def importar_csv(self, nombre_archivo="inventario.csv"):
         import csv
 
