@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "picandela.db")
 
 def generar_grafico_precios():
-    # 1. Conectar a la base de datos usando la ruta fija:
+    # 1. Conectar a la base de datos 
     conexion = sqlite3.connect(DB_PATH)
     df = pd.read_sql("SELECT NOMBRE, PRECIO FROM productos", conexion)
     conexion.close()
