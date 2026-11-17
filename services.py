@@ -41,8 +41,6 @@ class inventarioService:
 
         return True, f"El producto {nombre} fue guardado correctamente con su precio de: {precio}"
 
-    # SERVICE SE COMUNICA CON MAIN SOLO CON EL TEMA DEL INGRESO DEL PRODUCTO Y PRECIO.
-    # DATABASE => SERVICES (PRODUCTO Y PRECIO) => MAIN
     # DE RESTO VIENE DE DATABASE AL MAIN,  DATABASE = > MAIN 
 
 #nota: no hacemos el de agregar_producto porque esa funciON es la que hace la logica del service.
