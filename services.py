@@ -4,22 +4,23 @@ class inventarioService:
 
     def __init__(self):
 
+<<<<<<< HEAD
+        self.db = miTequeBase() # el servicio posee y maneja la base de datos comienza asi porque hay que usar el self con la clase..
+
+    # VALIDA LOS DATOS ANTES DE GUARDARLOS EN LA BD, DEVUELVE MENSAJE DE EXITO O MENSAJE DE ERROR:
+=======
         self.db = miTequeBase() # el servicio posee y maneja la base de datos 
+>>>>>>> 15ba69c88b542b92af52c0d71065b218c9b376cb
 
     def agregar_producto(self,nombre: str,precio_str: str):
 
-        # VALIDA LOS DATOS ANTES DE GUARDARLOS EN LA BD, DEVUELVE MENSAJE DE EXITO O MENSAJE DE ERROR:
-
-        # LIMPIAMOS LOS ESPACIOS EN BLANCO EXTRA:
-
-        nombre = nombre.strip()
+        nombre = nombre.strip() # LIMPIAMOS LOS ESPACIOS EN BLANCO EXTRA:
 
         if not nombre:
 
-            return False, "El nombre del producto no puede quedar vacio" # el false se debe representar en main con una variable
+            return False, "El nombre del producto no puede quedar vacio" 
 
         # intentamos convertir el precio a numero entero:
-
         try:
 
             precio = int(precio_str)
@@ -27,7 +28,6 @@ class inventarioService:
         except ValueError:
 
             return False, "El precio debe ser un numero entero valido"
-
 
         # Validamos que el precio sea mayor a cero:
 
@@ -37,47 +37,13 @@ class inventarioService:
 
         # SI PASA TODAS LAS REGLAS DE NEGOCIO GUARDAMOS LA INFORMACION EN LA BD
         
-        self.db.insertRow(nombre,precio)
+        self.db.insertRow(nombre,precio) # INSERCION A LA DATABASE!
 
         return True, f"El producto {nombre} fue guardado correctamente con su precio de: {precio}"
 
-    # COMO YA TODO EN MAIN DEPENDE DE SERVICES Y NO DE DATABASE DEASDE ACA LE MANDAMOS LAS FUNCIONES
-   
+    # SERVICE SE COMUNICA CON MAIN SOLO CON EL TEMA DEL INGRESO DEL PRODUCTO Y PRECIO.
+    # DATABASE => SERVICES (PRODUCTO Y PRECIO) => MAIN
+    # DE RESTO VIENE DE DATABASE AL MAIN,  DATABASE = > MAIN 
 
-  
-#---------------------------------------
+#nota: no hacemos el de agregar_producto porque esa funciON es la que hace la logica del service.
 
-    def mostrar_producto(self):
-    
-            return self.db.readRow()
-
-# ---------------------------------------
-
-    def actualizar_producto(self,nombre_nuevo,precio_nuevo):
-
-        return self.db.updateFields(nombre_nuevo,precio_nuevo)
-
-#-----------------------------------------
-
-    def borrar_producto(self,borrar):
-
-        return self.db.deleteRow(borrar)
-
-# ----------------------------------------
-    def buscar_producto(self,busqueda):
-
-        return self.db.search(busqueda) 
-    
-#-----------------------------------------
-
-    def exportar_excel(self):
-
-        return self.db.exportar_a_csv()
-
-# ----------------------------------------
-
-    def importar_excel(self):
-
-        return self.db.importar_csv()
-
-#nota: no hacemos el de agregar_producto porque esa funcino es la que hace la logica del service.
