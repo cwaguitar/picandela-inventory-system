@@ -1,11 +1,12 @@
-from services import inventarioService  
+from database import miTequeBase
+from services import inventarioService  # DE EL ARCHIVO SERVICES  IMPORTAME LA CLASE COMPLETA DE INVENTARIOSERVICE
 from graficos import generar_grafico_precios
 from analisis import analisis_picandela
 
 def iniciar_app():
     
-    servicio = inventarioService()
-    
+    servicio = inventarioService() # DENTRO DE LA VARIABLE METEMOS LA CLASE SERVICIOS.
+    picandela = miTequeBase()
     while True:
         print("\n-- BIENVENIDOS A PICANDELA! ELIGE CUALQUIERA DE LAS OPCIONES A CONTINUACION:")
         print("OPCION 1: Ver todos los productos")
@@ -25,11 +26,8 @@ def iniciar_app():
 
             print("\n--- VER TODOS LOS PRODUCTOS ---")
 
-            mostrar = servicio.mostrar_producto()
+            mostrar = picandela.readRow()
 
-            
-            # Imprimimos el mensaje 
-            
             print(f"PRODUCTOS ENCONTRADOS: \n {mostrar}")
 
         elif opcion == "2":
@@ -38,8 +36,8 @@ def iniciar_app():
             nombre = input("Ingresa el nombre del producto: ") 
             precio = int(input("Ingresa su precio: ")) 
 
-            # Llamamos al servicio y este nos devuelve una tupla: (exito: bool, mensaje: str)  
-            
+            # Llamamos al servicio y este nos devuelve una tupla: (exito: bool, mensaje: str) 
+            #       
             exito, agregar = servicio.agregar_producto(nombre, precio)  
             print(agregar)    
 
@@ -49,18 +47,19 @@ def iniciar_app():
             nombre_nuevo = input("Ingresa el nombre del producto a actualizar: ") 
             precio_nuevo = int(input("Ingresa su precio actualizado: ")) 
 
-            servicio.actualizar_producto(precio_nuevo, nombre_nuevo)
+            picandela.updateFields(precio_nuevo, nombre_nuevo)
+
             print("✅ ¡Precio actualizado correctamente!")
             
         elif opcion == "4":
             borrar = input("Ingrese el nombre del producto a borrar: ")
-            servicio.borrar_producto(borrar) 
+            picandela.deleteRow(borrar) 
 
             print("🗑️ ¡Producto procesado/eliminado!")
         
         elif opcion == "5":
             busqueda = input("Ingrese el nombre del producto a buscar: ")
-            resultados = servicio.buscar_producto(busqueda) # Guardamos los resultado 
+            resultados = picandela.search(busqueda) # Guardamos los resultado 
             
             if resultados:
                 print(f"\n--- RESULTADOS DE BÚSQUEDA ---")
@@ -71,17 +70,19 @@ def iniciar_app():
 
         elif opcion == "6":
             print("\n--- EXPORTANDO INVENTARIO ---")
-            exito = servicio.exportar_excel()
+            exito = picandela.exportar_a_csv()
 
             if exito:
                 print("✅ ¡Inventario exportado con éxito!")
                 print("📁 Busca el archivo 'inventario.csv' en la carpeta de tu proyecto y ábrelo con Excel.")
+
             else:
+                
                 print("⚠️ No hay productos en la base de datos para exportar.")
 
         elif opcion == '7':
 
-            exito = servicio.importar_excel()
+            exito = picandela.importar_csv()
             
             if exito:
 
