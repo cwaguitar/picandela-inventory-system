@@ -43,5 +43,5 @@ class inventarioService:
 
     # DE RESTO VIENE DE DATABASE AL MAIN,  DATABASE = > MAIN 
 
-#nota: no hacemos el de agregar_producto porque esa funciON es la que hace la logica del service.
+
 
